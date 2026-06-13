@@ -6,8 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: Dogrudan Indirme
+      - name: Dogrudan Indirme ve Kurulum
         run: |
+          echo "Kuruluma basliyoruz..."
           mkdir -p ~/bin
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
