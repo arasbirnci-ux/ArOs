@@ -9,5 +9,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Derleme Basladi
-        run: echo "Mimar iş başında, fabrika çalışıyor!"
+      - name: Depo ve Hazirlik
+        run: |
+          mkdir -p ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          export PATH=~/bin:$PATH
+          mkdir android-lab && cd android-lab
+          repo init --partial-clone --no-use-superproject -b android-latest-release -u https://android.googlesource.com/platform/manifest
+          repo sync -c -j$(nproc) --depth=1
+          echo "Kodlar indi, Mimar'ın mutfağı hazır!"
